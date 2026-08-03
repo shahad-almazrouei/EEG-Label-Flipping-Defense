@@ -98,30 +98,6 @@ The experimental results demonstrate that:
 
 ---
 
-## Visualizations
-
-### Baseline Machine Learning Models
-
-![Baseline Models](images/baseline-models.png)
-
-### Label-Flipping Attack Overview
-
-![Attack Overview](images/attack-overview.png)
-
-### Agent-Based Defense Pipeline
-
-![Defense Pipeline](images/defense-pipeline.png)
-
-### Performance Comparison
-
-![Performance Comparison](images/performance-comparison.png)
-
-### Confusion Matrix Comparison
-
-![Confusion Matrix Comparison](images/confusion-matrix-comparison.png)
-
----
-
 ## Academic Project
 
 This project was developed as part of the **COSC 435** course at **Khalifa University**.
