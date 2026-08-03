@@ -105,3 +105,9 @@ The experimental evaluation demonstrated that:
 - Combining label correction, feature-space cleaning, and validation produced stronger results than applying a single defense strategy alone.
 
 ---
+
+## Project Presentation
+
+A summary of the project, methodology, defense pipeline, experimental evaluation, and results is available in:
+
+- **Project_Presentation.pdf**
