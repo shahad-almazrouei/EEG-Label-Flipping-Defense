@@ -36,49 +36,57 @@ The original dataset consists of EEG frequency-band features representing four e
 
 The project consists of three stages:
 
-### Model I – Baseline Classification
+- **Model I:** Baseline EEG emotion classification using multiple machine learning classifiers.
+- **Model II:** Label-flipping poisoning attack to evaluate model vulnerability.
+- **Model III:** Agent-based defense framework to detect, repair, and validate poisoned data before retraining.
 
-Three supervised machine learning models were trained on the clean EEG dataset:
+### Agent-Based Defense Pipeline
+
+
+<img width="370" height="678" alt="image" src="https://github.com/user-attachments/assets/9ddaa925-d7f0-4894-8a7a-a684ec49972d" />
+
+
+---
+
+## Model I – Baseline Classification
+
+Three supervised machine learning models were trained and evaluated on the clean EEG dataset:
 
 - Random Forest
 - Support Vector Machine (SVM)
 - Multi-Layer Perceptron (MLP)
 
-The baseline models establish the reference performance before introducing adversarial attacks.
+These models established the baseline performance before introducing adversarial attacks.
 
 ---
 
-### Model II – Label-Flipping Poisoning Attack
+## Model II – Label-Flipping Poisoning Attack
 
-A label-flipping attack was implemented by randomly changing the labels of 15% of the training samples while leaving the feature vectors unchanged.
+A label-flipping attack was implemented by randomly modifying the labels of **15% of the training samples** while leaving the feature vectors unchanged.
 
-The objective was to evaluate how corrupted training labels affect model performance and robustness.
+This simulated a realistic training-time poisoning attack and demonstrated how corrupted labels can significantly degrade classification performance.
 
 ---
 
-### Model III – Agent-Based Defense
+## Model III – Agent-Based Defense
 
-A multi-agent defense pipeline was developed to mitigate the poisoning attack before retraining the classifier.
-
-The pipeline consists of three autonomous agents:
+To mitigate the poisoning attack, a sequential multi-agent defense framework was developed consisting of three specialized agents.
 
 ### Label Curator Agent
 
-- Detects suspicious labels using a trusted baseline Random Forest model.
-- Identifies inconsistencies between predicted and assigned labels.
-- Corrects mislabeled samples before further processing.
+- Detects suspicious labels using a trusted Random Forest reference model.
+- Corrects mislabeled samples with high-confidence predictions.
 
-### Centroid-based Curator Agent
+### Centroid-Based Curator Agent
 
-- Computes feature-space centroids for each emotion class.
+- Computes class centroids within the feature space.
 - Detects structural anomalies based on centroid distance.
 - Removes suspicious feature-space outliers.
 
 ### Validator Agent
 
-- Trains lightweight Logistic Regression models on candidate cleaned datasets.
-- Compares validation performance.
-- Selects the dataset that provides better generalization for final model training.
+- Evaluates candidate cleaned datasets using Logistic Regression.
+- Selects the dataset that provides the best validation performance before retraining the final classifier.
 
 ---
 
@@ -86,18 +94,14 @@ The pipeline consists of three autonomous agents:
 
 The project compares three scenarios:
 
-- **Model I:** Baseline model trained on clean data.
-- **Model II:** Model trained on poisoned data after a 15% label-flipping attack.
-- **Model III:** Defended model trained using the proposed multi-agent defense pipeline.
+- **Model I:** Baseline classifier trained on clean data.
+- **Model II:** Classifier trained on poisoned data after a 15% label-flipping attack.
+- **Model III:** Defended classifier trained using the proposed multi-agent defense pipeline.
 
-The experimental results demonstrate that:
+The experimental evaluation demonstrated that:
 
-- Label-flipping attacks significantly reduce classification performance.
-- The proposed defense pipeline successfully improves model robustness after poisoning.
-- Combining label correction, feature-space cleaning, and validation provides better resilience than relying on a single defense mechanism.
+- Label-flipping attacks reduced the reliability of the EEG emotion classifier.
+- The proposed multi-agent defense improved model robustness by correcting mislabeled samples and removing anomalous data.
+- Combining label correction, feature-space cleaning, and validation produced stronger results than applying a single defense strategy alone.
 
 ---
-
-## Academic Project
-
-This project was developed as part of the **COSC 435** course at **Khalifa University**.
